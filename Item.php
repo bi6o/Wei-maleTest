@@ -15,7 +15,7 @@ class Item
 		return $this->name;
 	}
 
-	public function setName($name) {
+	public function setName(string $name) {
 		$this->name = $name;
 		return $this;
 
@@ -25,10 +25,17 @@ class Item
 		return $this->price;
 	}
 
-	public function setPrice($price) {
+	public function setPrice(float $price) {
 		$this->price = $price;
 		return $this;
 
 	}
-
+	public static  function addPrice(Item $item, float $total) {
+		$total += $item->getPrice();
+		return $total;
+	}
+	public static function addToList(Item $item, array $list) {
+		$list[] = $item->getName();
+		return $list;
+	}
 }

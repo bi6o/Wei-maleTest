@@ -8,7 +8,7 @@ $garlic = new Item("Garlic" , "0.15");
 $papaya = new Item("Papaya" , "0.50");
 $items = [];
 $total = 0;
-$countToTwo = 0;
+$papayaCounter = 0;
 
 while( true ) {
 
@@ -30,24 +30,25 @@ while( true ) {
 
 	switch ($choice) {
 		case 1:
-			$total += $apple->getPrice();
-			$items[] = $apple->getName();
+			$total = Item::addPrice($apple, $total);
+			$items = Item::addToList($apple, $items);
 			break;
 		case 2:
-			$total += $orange->getPrice();
-			$items[] = $orange->getName();
+			$total = Item::addPrice($orange, $total);
+			$items = Item::addToList($orange, $items);
 			break;
 		case 3:
-			$total += $garlic->getPrice();
-			$items[] = $garlic->getName();
+			$total = Item::addPrice($garlic, $total);
+			$items = Item::addToList($garlic, $items);
 			break;
 		case 4:
-			$countToTwo ++;
-			$total += $papaya->getPrice();
-			$items[] = $papaya->getName();
-			if ($countToTwo == 2) {
-				$items[] = $papaya->getName();
-				$countToTwo = 0;
+			$papayaCounter ++;
+			$total = Item::addPrice($papaya, $total);
+			$items = Item::addToList($papaya, $items);
+
+			if ($papayaCounter == 2) {
+				$items = Item::addToList($papaya, $items);
+				$papayaCounter = 0;
 			}
 			break;
 		default:
